@@ -1,18 +1,14 @@
 const inquirer = require('inquirer');
-const mysql = require('mysql2');
-const consoleTable = require('console.table');
+const { getEmployees } = require('./src/employee.js');
 
-require('dotenv').config();
 
-const db = mysql.createConnection(
-    {
-        host: 'localhost',
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-    },
-    ///////
-)
+
+async function main() {
+getEmployees();
+
+}
+
+main();
 
 // on start user sees options (view dep, roles, emps; add dep, role, emp; upd emp role)
 
