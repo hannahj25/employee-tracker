@@ -1,4 +1,5 @@
 const connectDb = require('../db/connection.js');
+const cTable = require('console.table');
 
 
 
@@ -6,7 +7,7 @@ const connectDb = require('../db/connection.js');
 async function getEmployees() {
     const db = await connectDb();
     const result = await db.query('SELECT * FROM employee');
-    console.log(result);
+    console.table(result);
     
     
 }
