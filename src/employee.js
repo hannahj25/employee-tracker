@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const connectDb = require('../db/connection.js');
 const cTable = require('console.table');
+let empFirstName, empLastName, empRole, empManager;
 
 
 
@@ -18,14 +19,6 @@ async function getEmployees() {
 
 async function addEmployee() {
     const db = await connectDb();
-    
-    // db.query('Select * FROM employee', (err, response) => {
-    //     if (err) throw err;
-    //     let managerArray = [];
-    //     response.forEach(({ first_name, last_name, id }) => {
-    //         managerArray.push({name: first_name + " " + last_name, value: id})
-    //     });
-    // });
     await inquirer.prompt(
         [
             {
@@ -39,28 +32,16 @@ async function addEmployee() {
                 message: `Enter the employee's last name.`
             },
            
-            // {
-            //     type: 'list',
-            //     name: 'manager',
-            //     message: `Who is the employee's manager?`,
-            //     choices: managerArray
-            // }
+            
         ]
-    )
-    .then(answer => {
-        db.promise().query('INSERT INTO employee SET ?', {
-            first_name: answer.firstName,
-            last_name: answer.lastName,
-        });
-    })
-    
+    )   
     db.query('SELECT id, title FROM role', (err, response) => {
         if (err) throw err;
         let roleArray = [];
         response.forEach(({title, id}) => {
             roleArray.push({name: title, value: id})
         });
-        await inquirer.prompt(
+         inquirer.prompt(
              {
                 type: 'list',
                 name: 'role',
@@ -68,12 +49,37 @@ async function addEmployee() {
                 choices: roleArray
             },
         )
-        .then(answer => {
-            db.promise().query('INSERT INTO employee SET ?', {
-                role: answer.role
-            });
-        })
     });
+
+        db.query('Select * FROM employee', (err, response) => {
+        if (err) throw err;
+        let managerArray = [];
+        response.forEach(({ first_name, last_name, id }) => {
+            managerArray.push({name: first_name + " " + last_name, value: id})
+        });
+        inquirer.prompt(
+            {
+                type: 'list',
+                name: 'manager',
+                message: `Who is the employee's manager?`,
+                choices: managerArray
+            }
+        )
+    })
+        empFirstName = answers.firstName;
+        empLastName = answers.lastName;
+        empRole = answers.role;
+        empManager = answers.manager;
+        var newEmployee = db.query('INSERT INTO employee SET ?', {
+            first_name: empFirstName,
+            last_name: empLastName,
+            role_id: empRole,
+            manager_id: empManager
+        })
+    
+
+    
+
 }
 
 //update employee role
