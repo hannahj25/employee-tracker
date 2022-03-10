@@ -26,7 +26,7 @@ async function addEmployee() {
     //         managerArray.push({name: first_name + " " + last_name, value: id})
     //     });
     // });
-    inquirer.prompt(
+    await inquirer.prompt(
         [
             {
                 type: 'input',
@@ -54,13 +54,13 @@ async function addEmployee() {
         });
     })
     
-    db.promise().query('SELECT id, title FROM role', (err, response) => {
+    db.query('SELECT id, title FROM role', (err, response) => {
         if (err) throw err;
         let roleArray = [];
         response.forEach(({title, id}) => {
             roleArray.push({name: title, value: id})
         });
-        inquirer.prompt(
+        await inquirer.prompt(
              {
                 type: 'list',
                 name: 'role',
