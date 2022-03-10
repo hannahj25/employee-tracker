@@ -47,7 +47,11 @@ async function addRole() {
         ]
     )
     .then(answer => {
-        db.promise().query('INSERT INTO role (title, salary, department_id) VALUES (?)', answer.roleTitle, answer.salary, answer.department);
+        db.promise().query('INSERT INTO role SET ?', {
+            title: answer.roleTitle,
+            salary: answer.salary,
+            department_id: answer.department
+        });
         console.log(`Added ${answer.roleTitle} to database.`);
     })
 })

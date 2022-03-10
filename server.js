@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const { getEmployees } = require('./src/employee.js');
+const { getEmployees, addEmployee } = require('./src/employee.js');
 const { getRoles, addRole } = require('./src/role.js');
 const { getDepartments, addDepartment } = require('./src/department.js');
 
