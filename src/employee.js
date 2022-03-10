@@ -1,6 +1,5 @@
 const connectDb = require('../db/connection.js');
 const cTable = require('console.table');
-const Connection = require('mysql2/typings/mysql/lib/Connection');
 
 
 

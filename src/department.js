@@ -16,15 +16,18 @@ async function getDepartments() {
 
 // add department
 async function addDepartment() {
+    const db = await connectDb();
     inquirer.prompt({
         type: 'input',
         name: 'departmentName',
-        message: 'What department would you like to add?'
+        message: 'Enter the department you would like to add.'
     })
     .then(answer => {
-        var newEmp = db.query('INSERT INTO department (`name`) VALUES (?)', `${departmentName}`, (err) => {
+        var newDepartment = db.query('INSERT INTO department (`name`) VALUES (?)', answer.departmentName, (err) => {
             if (err) throw err;
-            console.log(`Added ${departmentName} to the database.`);
+            else {
+            console.log(`Added ${answer.departmentName} to the database.`);
+            };
         })
     })
 };

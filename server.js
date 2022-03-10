@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const { getEmployees } = require('./src/employee.js');
-const { getRoles } = require('./src/role.js');
+const { getRoles, addRole } = require('./src/role.js');
 const { getDepartments, addDepartment } = require('./src/department.js');
 
 
@@ -35,6 +35,15 @@ inquirer.prompt ([
     case 'Add department':
       addDepartment();
       break;
+    case 'Add role':
+      addRole();
+      break;
+    case 'Add employee':
+      addEmployee();
+      break;
+    case 'Update employee role':
+      updateEmployee();
+      break;  
   }
 })
 

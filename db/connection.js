@@ -1,8 +1,8 @@
-const mysql = require('mysql2/promise');
+const mysql = require('mysql2');
 
 require('dotenv').config();
 
-function connectDb() {
+async function connectDb() {
 return mysql.createConnection(
     {
         host: 'localhost',
@@ -11,7 +11,7 @@ return mysql.createConnection(
         database: process.env.DB_NAME
     }
     
-).catch((err) => console.log(err));
+)
 }
 
 
