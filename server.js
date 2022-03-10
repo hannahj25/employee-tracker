@@ -1,10 +1,42 @@
 const inquirer = require('inquirer');
 const { getEmployees } = require('./src/employee.js');
+const { getRoles } = require('./src/role.js');
+const { getDepartments, addDepartment } = require('./src/department.js');
 
 
 
 async function main() {
-getEmployees();
+inquirer.prompt ([
+  {
+    type: 'list',
+    name: 'menu',
+    message: 'What would you like to do?',
+    choices: [
+      'View departments',
+      'View roles',
+      'View employees',
+      'Add department',
+      'Add role',
+      'Add employee',
+      'Update employee role'
+    ]
+  }
+]).then((answer) => {
+  switch (answer.menu) {
+    case 'View departments':
+      getDepartments();
+      break;
+    case 'View roles':
+      getRoles();
+      break;
+    case 'View employees':
+      getEmployees();
+      break;
+    case 'Add department':
+      addDepartment();
+      break;
+  }
+})
 
 }
 
