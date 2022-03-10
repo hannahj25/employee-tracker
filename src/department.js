@@ -7,7 +7,7 @@ const cTable = require('console.table');
 // get department table
 async function getDepartments() {
     const db = await connectDb();
-    const [result] = await db.query('SELECT * FROM department');
+    const [result] = await db.promise().query('SELECT * FROM department');
     console.log(result);
     console.table(result);
     

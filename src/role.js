@@ -8,7 +8,7 @@ const { getDepartments } = require('./department.js');
 // get role table
 async function getRoles() {
     const db = await connectDb();
-    const [result] = await db.query('SELECT * FROM `role`');
+    const [result] = await db.promise().query('SELECT * FROM `role`');
     console.log(result);
     console.table(result);
     
@@ -47,12 +47,8 @@ async function addRole() {
         ]
     )
     .then(answer => {
-        var newRole = db.query('INSERT INTO role (title, salary, department_id) VALUES (?)', answer.roleTitle, answer.salary, answer.department, (err) => {
-            if (err) throw err;
-            else {
-            console.log(`Added ${answer.roleTitle} to the database.`);
-            };
-        })
+        db.promise().query('INSERT INTO role (title, salary, department_id) VALUES (?)', answer.roleTitle, answer.salary, answer.department);
+        console.log(`Added ${answer.roleTitle} to database.`);
     })
 })
     

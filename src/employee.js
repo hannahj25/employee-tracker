@@ -6,7 +6,7 @@ const cTable = require('console.table');
 // get employee table
 async function getEmployees() {
     const db = await connectDb();
-    const [result] = await db.query('SELECT * FROM employee');
+    const [result] = await db.promise().query('SELECT * FROM employee');
     console.log(result);
     console.table(result);
     
