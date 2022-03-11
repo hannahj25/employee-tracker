@@ -19,29 +19,27 @@ async function getEmployees() {
 
 async function addEmployee() {
     const db = await connectDb();
-    await inquirer.prompt(
-        [
+    empFirstName = await inquirer.prompt(
             {
                 type: 'input',
                 name: 'firstName',
                 message: `Enter the employee's first name.`
             },
+    );
+    empLastName = await inquirer.prompt(
             {
                 type: 'input',
                 name: 'lastName',
                 message: `Enter the employee's last name.`
             },
-           
-            
-        ]
-    )   
+    );  
     db.query('SELECT id, title FROM role', (err, response) => {
         if (err) throw err;
         let roleArray = [];
         response.forEach(({title, id}) => {
             roleArray.push({name: title, value: id})
         });
-         inquirer.prompt(
+         empRole = inquirer.prompt(
              {
                 type: 'list',
                 name: 'role',
@@ -51,33 +49,30 @@ async function addEmployee() {
         )
     });
 
-        db.query('Select * FROM employee', (err, response) => {
-        if (err) throw err;
-        let managerArray = [];
-        response.forEach(({ first_name, last_name, id }) => {
-            managerArray.push({name: first_name + " " + last_name, value: id})
-        });
-        inquirer.prompt(
-            {
-                type: 'list',
-                name: 'manager',
-                message: `Who is the employee's manager?`,
-                choices: managerArray
-            }
-        )
-    })
-        empFirstName = answers.firstName;
-        empLastName = answers.lastName;
-        empRole = answers.role;
-        empManager = answers.manager;
-        var newEmployee = db.query('INSERT INTO employee SET ?', {
+    //     db.query('Select * FROM employee', (err, response) => {
+    //     if (err) throw err;
+    //     let managerArray = [];
+    //     response.forEach(({ first_name, last_name, id }) => {
+    //         managerArray.push({name: first_name + " " + last_name, value: id})
+    //     });
+    //     inquirer.prompt(
+    //         {
+    //             type: 'list',
+    //             name: 'manager',
+    //             message: `Who is the employee's manager?`,
+    //             choices: managerArray
+    //         }
+    //     )
+    // })
+        db.query('INSERT INTO employee SET ?', {
             first_name: empFirstName,
             last_name: empLastName,
             role_id: empRole,
-            manager_id: empManager
+            // manager_id: empManager
+            
         })
+        console.log(`Added ${empFirstName} to database.`);
     
-
     
 
 }
