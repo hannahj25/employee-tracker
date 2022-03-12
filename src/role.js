@@ -18,15 +18,9 @@ async function getRoles() {
 //add role
 async function addRole() {
     const db = await connectDb();
-    let deptQuery = 'SELECT id, name FROM department';
-    db.query(deptQuery, (err, response) => {
-        if (err) throw err;
-        let departmentArray = [];
-        response.forEach(({name, id}) => {
-            departmentArray.push({name: name, value: id})
-        })
-    
-    inquirer.prompt(
+    const [departments] = await db.promise().query('SELECT id, name FROM department');
+
+    return inquirer.prompt(
         [
             {
                 type: 'input',
@@ -42,18 +36,22 @@ async function addRole() {
                 type: 'list',
                 name: 'department',
                 message: 'Which department does this role belong to?',
-                choices: departmentArray
+                choices: departments.map((department) => {
+                    return {
+                        name: department.name,
+                        value: department.id,
+                    }
+                })
             }
         ]
     )
     .then(answer => {
-        db.promise().query('INSERT INTO role SET ?', {
+        return db.promise().query('INSERT INTO role SET ?', {
             title: answer.roleTitle,
             salary: answer.salary,
             department_id: answer.department
-        });
-        console.log(`Added ${answer.roleTitle} to database.`);
-    })
+        })
+        .then(() => console.log(`Added ${answer.roleTitle} to database.`));
 })
     
 
