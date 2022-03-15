@@ -128,9 +128,7 @@ async function updateEmployeeRole() {
         );
     });
 }
-// select an employee
-// select a new role
-// update role
+
 
 //delete employee - bonus
 
