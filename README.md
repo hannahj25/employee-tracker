@@ -43,7 +43,7 @@ You can now start the application with:
 
 From here, you will be presented with several options, as seen below: 
 
--- add screenshot of menu --
+![screenshot-menu](./assets/images/menuscreenshot.png)
 
 Select how you wish to proceed. If you select one of the "view" options, you will see a table with the relevant data currently contained in the database.
 
@@ -57,7 +57,9 @@ For further help, the video below demonstrates how to use the app:
 
 ## Built With
 Node.js
+
 Inquirer
+
 MySQL2
 
 ## License
