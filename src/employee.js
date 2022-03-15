@@ -5,7 +5,7 @@ const cTable = require("console.table");
 // Get employee table
 async function getEmployees() {
   const db = await connectDb();
-  const [result] = await db.promise().query(`SELECT employee.id AS id, employee.first_name AS first_name, employee.last_name AS last_name, role.title AS title department.name AS department, role.salary AS salary, concat(manager.first_name, " ", manager.last_name) AS manager FROM employee employee JOIN role ON employee.role_id = role.id JOIN department ON role.department_id = department.id LEFT JOIN employee manager ON employee.manager_id = manager.id ORDER BY employee.id`);
+  const [result] = await db.promise().query(`SELECT employee.id AS id, employee.first_name AS first_name, employee.last_name AS last_name, role.title AS role, department.name AS department, role.salary AS salary, concat(manager.first_name, " ", manager.last_name) AS manager FROM employee employee JOIN role ON employee.role_id = role.id JOIN department ON role.department_id = department.id LEFT JOIN employee manager ON employee.manager_id = manager.id ORDER BY employee.id`);
   console.log(result);
   console.table(result);
 }
