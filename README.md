@@ -22,13 +22,22 @@
 This application is a content management system, designed to manage a company's employee database from the command line.
 
 ## Installation
-Run command:
+Note: You will need a MySQL account to use this program.
+
+In the .envEXAMPLE file, add your MySQL password and user. Delete 'example' from the file name.
+
+Now, in the command line, install dependencies by running:
 
  `npm install`
 
 
+Log in to the MySQL shell and run:
+
+`SOURCE db/schema.sql;`
+
+
  ## Usage
-After installing, run command:
+You can now start the application with:
 
  `npm start`
 
