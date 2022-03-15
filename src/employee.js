@@ -10,7 +10,7 @@ async function getEmployees() {
   console.table(result);
 }
 
-// Add new employee to employee table
+// Add new employee to database
 async function addEmployee() {
   const db = await connectDb();
   const [roles] = await db.promise().query("SELECT id, title FROM role");

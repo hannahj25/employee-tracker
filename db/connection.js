@@ -2,6 +2,7 @@ const mysql = require('mysql2');
 
 require('dotenv').config();
 
+// Connects mysql to node
 async function connectDb() {
 return mysql.createConnection(
     {

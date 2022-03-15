@@ -3,7 +3,7 @@ const { getEmployees, addEmployee, updateEmployeeRole } = require("./src/employe
 const { getRoles, addRole } = require("./src/role.js");
 const { getDepartments, addDepartment } = require("./src/department.js");
 
-// On start user sees and can select from options
+// On running npm start, main menu is displayed and functions are run based on user input
 async function main() {
   inquirer
     .prompt([

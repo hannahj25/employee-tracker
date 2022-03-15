@@ -15,7 +15,7 @@ async function getRoles() {
     
 }
 
-//add role
+// add new role to database
 async function addRole() {
     const db = await connectDb();
     const [departments] = await db.promise().query('SELECT id, name FROM department');

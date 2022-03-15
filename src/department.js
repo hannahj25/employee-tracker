@@ -4,7 +4,7 @@ const cTable = require('console.table');
 
 
 
-// get department table
+// Get department table
 async function getDepartments() {
     const db = await connectDb();
     const [result] = await db.promise().query('SELECT * FROM department');
@@ -14,7 +14,7 @@ async function getDepartments() {
     
 }
 
-// add department
+// Add new department to database
 async function addDepartment() {
     const db = await connectDb();
     return inquirer.prompt({
