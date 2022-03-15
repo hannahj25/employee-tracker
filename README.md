@@ -12,6 +12,8 @@
 
 - [Built With](#built-with)
 
+- [Future Development](#future-development)
+
 - [License](#license)
 
 - [Contact](#contact)
@@ -56,11 +58,19 @@ For further help, the video below demonstrates installation and usage of the app
 https://drive.google.com/file/d/1TKWeLbZlqf9AJDCdT0m8Xh-uT2p0PVKb/view
 
 ## Built With
-Node.js
+- Node.js
+- Inquirer
+- MySQL2
 
-Inquirer
+## Future Development
+Add some extra functionality, especially:
 
-MySQL2
+- delete departments, roles and employees
+- update an employee's manager
+- view employees according to the manager or department they are under
+- view the total utilised budger of a department, i.e. the combined salaries of all employees in that department
+
+
 
 ## License
 This project is covered under the MIT license.
