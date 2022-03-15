@@ -1,9 +1,8 @@
 const inquirer = require("inquirer");
 const connectDb = require("../db/connection.js");
 const cTable = require("console.table");
-let empFirstName, empLastName, empRole, empManager;
 
-// get employee table
+// Get employee table
 async function getEmployees() {
   const db = await connectDb();
   const [result] = await db.promise().query("SELECT * FROM employee");
@@ -11,8 +10,7 @@ async function getEmployees() {
   console.table(result);
 }
 
-// add employee to table
-
+// Add new employee to employee table
 async function addEmployee() {
   const db = await connectDb();
   const [roles] = await db.promise().query("SELECT id, title FROM role");
@@ -74,7 +72,7 @@ async function addEmployee() {
     });
 }
 
-//update employee role
+// Update and existing employee's role
 async function updateEmployeeRole() {
   const db = await connectDb();
   const [employees] = await db.promise().query("Select * FROM employee");
@@ -100,9 +98,7 @@ async function updateEmployeeRole() {
         name: "role",
         message: "What is the employee's new role?",
         choices: function (ans) {
-          // find out the role id that the selected employee has
           const selectedRoleId = ans.employee.role_id;
-
           return roles
             .filter((role) => role.id !== selectedRoleId)
             .map((role) => {
@@ -128,8 +124,5 @@ async function updateEmployeeRole() {
         );
     });
 }
-
-
-//delete employee - bonus
 
 module.exports = { getEmployees, addEmployee, updateEmployeeRole };
