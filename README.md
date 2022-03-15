@@ -51,9 +51,9 @@ If you select add a department, role or employee, you will be prompted to enter 
 
 If you select "exit", the application will stop running.
 
-For further help, the video below demonstrates how to use the app:
+For further help, the video below demonstrates installation and usage of the app:
 
--- add video link here --
+https://drive.google.com/file/d/1TKWeLbZlqf9AJDCdT0m8Xh-uT2p0PVKb/view
 
 ## Built With
 Node.js
